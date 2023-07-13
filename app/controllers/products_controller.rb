@@ -4,10 +4,22 @@ class ProductsController < ApplicationController
   # GET /products or /products.json
   def index
     @products = Product.all
+    respond_to do |format|
+      format.html
+      format.xlsx{
+        response.headers['Content-Disposition'] = 'attachment; filename="List of products.xlsx"'
+      }
   end
+end
 
   # GET /products/1 or /products/1.json
   def show
+    respond_to do |format|
+      format.html
+      format.xlsx{
+        response.headers['Content-Disposition'] = 'attachment; filename="Product Details.xlsx"'
+      }
+  end
   end
 
   # GET /products/new
@@ -57,8 +69,29 @@ class ProductsController < ApplicationController
     end
   end
 
-  private
+  def new_movement
+    @product = Product.find(params[:id])
+    @movement = Movement.new
+  end
+
+  def create_movement
+    @product = Product.find(params[:id])
+    @movement = Movement.new(movement_params)
+    @movement.product_id = @product.id
+    if @movement.save
+      redirect_to @product, notice: "the movement was created correctly"
+    else 
+      flash[:notice] = "An error has occurred"
+      render :new_movement, status: :unprocessable_entity
+    end
+  end
+
+    private
     # Use callbacks to share common setup or constraints between actions.
+    def movement_params
+      params.require(:movement).permit(:quantity, :movement_type, :comment)
+    end
+
     def set_product
       @product = Product.find(params[:id])
     end
