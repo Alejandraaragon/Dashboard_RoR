@@ -1,24 +1,29 @@
-# README
+# DASHBOARD
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Tecnologías Utilizadas
 
-Things you may want to cover:
+* Ruby on Rails 
+* Sqlite
+* CSS
+* Bootstrap
 
-* Ruby version
+## Descripción
 
-* System dependencies
+#### Éste es un panel de administrador que permite crear productos, mostrarlos, editarlos y eliminarlos. También muestra los productos en forma de listado, la cantidad y hace un seguimiento de los movimientos de stock para un amplio control.
 
-* Configuration
+## Como se ve Dashboard
 
-* Database creation
+* Lista de productos
 
-* Database initialization
+![img1](/assets_git/ListProd1.png)
 
-* How to run the test suite
 
-* Services (job queues, cache servers, search engines, etc.)
+* Detalle de los productos
 
-* Deployment instructions
+![img2](/assets_git/DetailProd2.png)
 
-* ...
+
+* Creación de productos
+
+![img3](/assets_git/creacionProd3.png)
+
